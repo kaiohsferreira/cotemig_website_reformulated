@@ -1,0 +1,239 @@
+@import 'tailwindcss';
+
+/* ============================================================================
+   COTEMIG — Design System
+   ----------------------------------------------------------------------------
+   Fonte unica de verdade para cor, tipografia, espacamento, raio e sombra.
+   Nenhum componente deve escrever cor, tamanho de fonte, raio ou sombra crus:
+   sempre via token daqui.
+
+   Evolucao da marca (nao ruptura):
+   - O verde #40AA0B do site atual continua sendo a cor da marca (brand-500) e
+     segue mandando em preenchimentos, botoes e areas grandes.
+   - Para TEXTO sobre branco o #40AA0B reprova em contraste (3.0:1, abaixo dos
+     4.5:1 exigidos pela WCAG AA). Por isso existe brand-700 (#2A7008, 6.1:1),
+     que e o unico verde permitido em texto corrido sobre fundo claro.
+   - O preto do site atual virou uma rampa `ink` com leve tom verde, para o
+     cinza nao brigar com a marca.
+   ========================================================================== */
+
+@theme {
+  /* --- Cor: marca ------------------------------------------------------- */
+  --color-brand-50: #f1faeb;
+  --color-brand-100: #ddf3d0;
+  --color-brand-200: #bfe7a6;
+  --color-brand-300: #97d671;
+  --color-brand-400: #6bc13b;
+  --color-brand-500: #40aa0b; /* marca oficial — fills, botoes, areas grandes */
+  --color-brand-600: #368f09; /* hover de fill / texto grande               */
+  --color-brand-700: #2a7008; /* AA em texto corrido sobre branco (6.1:1)   */
+  --color-brand-800: #22590a;
+  --color-brand-900: #1c480c;
+  --color-brand-950: #0d2705;
+
+  /* --- Cor: Faculdade ---------------------------------------------------
+     Usado SOMENTE para distinguir contexto de Faculdade do de Colegio
+     (eyebrow, badge, borda de card). Nunca como segunda cor de marca. */
+  --color-faculty-50: #ecfbfb;
+  --color-faculty-100: #cff3f4;
+  --color-faculty-200: #a3e6e9;
+  --color-faculty-300: #6bd2d8;
+  --color-faculty-400: #35b4bd;
+  --color-faculty-500: #1794a0;
+  --color-faculty-600: #0e7683;
+  --color-faculty-700: #0d5f6b; /* AA em texto sobre branco */
+  --color-faculty-800: #104c56;
+  --color-faculty-900: #123f48;
+
+  /* --- Cor: neutros ------------------------------------------------------ */
+  --color-ink-50: #f8faf8;
+  --color-ink-100: #f1f3f1;
+  --color-ink-200: #e3e7e3;
+  --color-ink-300: #c7ccc7;
+  --color-ink-400: #9aa09a;
+  --color-ink-500: #6b716b;
+  --color-ink-600: #424742; /* AA em texto secundario sobre branco */
+  --color-ink-700: #2e322e;
+  --color-ink-800: #1c1f1c;
+  --color-ink-900: #111311;
+  --color-ink-950: #0b0d0a;
+
+  /* --- Cor: semantica ---------------------------------------------------- */
+  --color-danger-50: #fef2f2;
+  --color-danger-500: #dc2626;
+  --color-danger-700: #b31414;
+  --color-success-50: #f1faeb;
+  --color-success-700: #2a7008;
+  --color-warning-50: #fffbeb;
+  --color-warning-700: #a16207;
+
+  /* --- Tipografia --------------------------------------------------------
+     Sora  = display. Geometrica, tecnica — cara de escola de tecnologia.
+     Lato  = texto. Continuidade com a marca atual do Cotemig. */
+  --font-display: 'Sora', 'Segoe UI', system-ui, sans-serif;
+  --font-sans: 'Lato', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Escala de display, fluida. Sem media query: cresce com a viewport. */
+  --text-display-sm: clamp(1.75rem, 1.4rem + 1.6vw, 2.25rem);
+  --text-display-sm--line-height: 1.15;
+  --text-display-sm--letter-spacing: -0.02em;
+  --text-display-sm--font-weight: 700;
+
+  --text-display-md: clamp(2.125rem, 1.6rem + 2.4vw, 3rem);
+  --text-display-md--line-height: 1.1;
+  --text-display-md--letter-spacing: -0.025em;
+  --text-display-md--font-weight: 700;
+
+  --text-display-lg: clamp(2.5rem, 1.7rem + 3.6vw, 3.75rem);
+  --text-display-lg--line-height: 1.05;
+  --text-display-lg--letter-spacing: -0.03em;
+  --text-display-lg--font-weight: 700;
+
+  --text-display-xl: clamp(2.75rem, 1.6rem + 5vw, 4.5rem);
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.035em;
+  --text-display-xl--font-weight: 800;
+
+  /* Eyebrow / kicker — o rotulo curto em caixa alta acima dos titulos. */
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.12em;
+  --text-eyebrow--font-weight: 700;
+
+  /* --- Raio ---------------------------------------------------------------
+     UMA escala de tres degraus. O site atual tinha 14 valores diferentes. */
+  --radius-sm: 0.5rem; /*  8px — chips, inputs, botoes pequenos */
+  --radius-md: 0.75rem; /* 12px — botoes, cards                  */
+  --radius-lg: 1.25rem; /* 20px — cards grandes, midia, hero     */
+  --radius-xs: initial;
+  --radius-xl: initial;
+  --radius-2xl: initial;
+  --radius-3xl: initial;
+  --radius-4xl: initial;
+
+  /* --- Sombra -------------------------------------------------------------
+     Tres niveis de elevacao, todos com o tom da tinta (nunca preto puro). */
+  --shadow-card: 0 1px 2px rgb(11 13 10 / 0.04), 0 4px 12px rgb(11 13 10 / 0.06);
+  --shadow-lift: 0 2px 6px rgb(11 13 10 / 0.06), 0 14px 32px rgb(11 13 10 / 0.1);
+  --shadow-overlay: 0 8px 20px rgb(11 13 10 / 0.12), 0 32px 64px rgb(11 13 10 / 0.18);
+  --shadow-2xs: initial;
+  --shadow-xs: initial;
+  --shadow-sm: initial;
+  --shadow-md: initial;
+  --shadow-lg: initial;
+  --shadow-xl: initial;
+  --shadow-2xl: initial;
+
+  /* --- Breakpoints --------------------------------------------------------
+     QUATRO, todos em rem. O site atual misturava em e px em 14 queries. */
+  --breakpoint-sm: 40rem; /*  640px */
+  --breakpoint-md: 48rem; /*  768px */
+  --breakpoint-lg: 64rem; /* 1024px */
+  --breakpoint-xl: 80rem; /* 1280px */
+  --breakpoint-2xl: initial;
+
+  /* --- Largura de conteudo ------------------------------------------------ */
+  --container-shell: 78rem; /* 1248px — largura maxima do miolo do site */
+  --container-prose: 44rem; /*  704px — largura de leitura confortavel  */
+
+  /* --- Movimento ---------------------------------------------------------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-ink-200);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    color: var(--color-ink-900);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Foco visivel e consistente no site inteiro — o site atual nao tinha. */
+  :focus-visible {
+    outline: 3px solid var(--color-brand-600);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Compensa o header fixo quando a navegacao pula para uma ancora. */
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-200);
+    color: var(--color-ink-900);
+  }
+}
+
+/* ============================================================================
+   Utilitarios de projeto
+   ========================================================================== */
+
+@utility container-shell {
+  width: 100%;
+  max-width: var(--container-shell);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Fundo escuro da marca: preto esverdeado com um halo verde sutil. */
+@utility surface-ink {
+  background-color: var(--color-ink-950);
+  background-image:
+    radial-gradient(60rem 30rem at 15% -10%, rgb(64 170 11 / 0.18), transparent 60%),
+    radial-gradient(40rem 24rem at 90% 0%, rgb(23 148 160 / 0.12), transparent 60%);
+}
+
+/* `line-clamp-N` vem do proprio Tailwind v4 — nao redefinir aqui. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
